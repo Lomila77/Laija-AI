@@ -1,0 +1,8 @@
+repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.0.1  # Utilisez la dernière version
+    hooks:
+    -   id: trailing-whitespace
+    -   id: check-yaml
+    -   id: end-of-file-fixer
+    -   id: check-added-large-files

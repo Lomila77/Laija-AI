@@ -23,6 +23,9 @@ databases = {extras = ["sqlite"], version = "^0.9.0"}
 pytest = "^8.2.0"
 pytest-asyncio = "^0.23.6"
 django = "^5.0.6"
+djangorestframework = "^3.15.1"
+djangorestframework-simplejwt = "^5.3.1"
+django-cors-headers = "^4.3.1"
 
 
 [build-system]

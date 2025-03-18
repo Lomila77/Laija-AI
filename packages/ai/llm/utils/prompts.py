@@ -49,7 +49,7 @@ class Prompt(BaseModel):
         return formatted_adjectifs
 
     def format_name(self) -> str:
-        return f"Ton prénon est {self.name}.\n" if self.name else ""
+        return f"Ton prénom est {self.name}.\n" if self.name else ""
 
 
     def format_message(self) -> str:

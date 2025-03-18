@@ -10,7 +10,9 @@ logs/
 
 # Environment files
 .env
-.env.*
+
+# Python env:
+.venv
 
 # IDE specific files
 .vscode/

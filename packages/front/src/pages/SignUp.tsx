@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import PlankL from '../components/plank/plank-l';
 import NeutralButtonXL from '../components/button/neutral-button-xl';
 import UsernameInput from '../components/input/username';
-import PasswordInput from '../components/input/password';
+import PasswordInput from '../components/input/password';+9
+
 
 const SignUp: React.FC = () => {
   const [username, setUsername] = useState('');
@@ -24,7 +25,7 @@ const SignUp: React.FC = () => {
 
       if (!response.ok) {
         console.error('Error from server: ', response.status, response.statusText);
-        alert('Error');
+        alert('Error: ' + response.statusText);
         return;
       }
 
@@ -36,6 +37,7 @@ const SignUp: React.FC = () => {
       alert('Error');
     }
   };
+  
   return (
     <PlankL componentChildren={
       <div className='flex flex-col items-start justify-start'>

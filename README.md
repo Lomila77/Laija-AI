@@ -39,14 +39,14 @@ Le projet est en cours de développement. Certaines fonctionnalités peuvent êt
 
 1. Installer les dépendances du frontend :
    ```sh
-   cd frontend
+   cd packages/front
    npm install
    npm run dev
    ```
 
 2. Installer les dépendances backend avec Poetry et démarrer Django :
    ```sh
-   cd backend
+   cd packages/back
    poetry install
    poetry run python manage.py runserver
    ```
@@ -55,7 +55,7 @@ Le projet est en cours de développement. Certaines fonctionnalités peuvent êt
    ```sh
    cd ai_api
    poetry install
-   poetry run uvicorn main:app --reload
+   poetry run uvicorn service:app --reload --port 8001
    ```
 
 ## Déploiement

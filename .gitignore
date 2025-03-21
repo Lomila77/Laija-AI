@@ -63,3 +63,5 @@ instance/
 # MacOS
 *.DS_Store
 .DS_Store
+
+.front_old

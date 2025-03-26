@@ -19,4 +19,4 @@ class AISerializer(serializers.ModelSerializer):
     class Meta:
         model = AI
         fields = ["id", "name", "back_story", "created_at", "creator"]
-        extra_kwargs = {"author": {"read_only": True}}
+        extra_kwargs = {"creator": {"read_only": True}}

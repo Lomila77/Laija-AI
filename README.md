@@ -31,8 +31,7 @@ Le projet est en cours de développement. Certaines fonctionnalités peuvent êt
 ### Prérequis
 
 - Node.js (version compatible avec React)
-- Python (version compatible avec Django et FastAPI)
-- Poetry pour la gestion des dépendances
+- Python (version compatible avec Django, FastAPI et env virtuel)
 - PostgreSQL
 
 ### Lancer l'application
@@ -40,27 +39,43 @@ Le projet est en cours de développement. Certaines fonctionnalités peuvent êt
 1. Installer les dépendances du frontend :
    ```sh
    cd packages/front
-   npm install
-   npm run dev
+   npm install  # Installer les dépendances
+   npm run dev  # Lancer l'application
    ```
 
-2. Installer les dépendances backend avec Poetry et démarrer Django :
+2. Lancer le backend Django :
    ```sh
    cd packages/back
-   poetry install
-   poetry run python manage.py runserver
+   python3 -m venv .venv  # Création d'un environnement python
+   source .venv/bin/activate  # Activer l'environnement
+   pip install -r requirement.txt  # Installer les dépendances
+   python manage.py runserver  # Lancer l'application
    ```
 
 3. Lancer l'API IA avec FastAPI :
    ```sh
-   cd ai_api
-   poetry install
-   poetry run uvicorn service:app --reload --port 8001
+   cd packages/ai
+   python3 -m venv .venv  # Création d'un environnement python
+   source .venv/bin/activate  # Activer l'environnement
+   pip install -r requirement.txt  # Installer les dépendances
+   uvicorn service:app --reload --port 8001  # Lancer l'application
    ```
 
 ## Déploiement
 
 L'application pourra être conteneurisée avec Docker et déployée via un orchestrateur adapté. Les configurations seront définies ultérieurement.
+
+## Tests
+
+L'application est testée avec pytest-django.
+Pour executer les tests, rendez vous à la racine du paquet et lancez la commande:
+```bash
+pytest
+```
+Pour voir les logs:
+```bash
+pytest -s
+```
 
 ## Contributions
 

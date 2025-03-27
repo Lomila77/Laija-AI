@@ -1,6 +1,7 @@
-from llm.base.BaseAssistant import BaseAssistant
-from llm.utils.prompts import Prompt
-from llm.personalize.prompt.personalize import PERSONALIZE_PROMPT
+from src.llm.base.BaseAssistant import BaseAssistant
+from src.llm.utils.prompts import Prompt
+from src.llm.personalize.prompt.personalize import PERSONALIZE_PROMPT
+
 
 class PersonalizeAssistant(BaseAssistant):
     unformatted_prompt: dict = PERSONALIZE_PROMPT

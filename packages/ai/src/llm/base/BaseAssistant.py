@@ -1,8 +1,8 @@
 from pydantic import BaseModel, field_validator
-from llm.utils.messages.user_messages import UserMessage
-from llm.base.prompt.generic import GENERIC_PROMPT
-from llm.utils.prompts import Prompt
+from src.llm.base.prompt.generic import GENERIC_PROMPT
+from src.llm.utils.prompts import Prompt
 import aiohttp
+
 
 class BaseAssistant(BaseModel):
     message: str
@@ -19,11 +19,10 @@ class BaseAssistant(BaseModel):
 
     @field_validator("message")
     @classmethod
-    def validate_message(cls, message) -> str:
-        if message is None or len(message) == 0:
+    def validate_message(cls, message: str) -> str:
+        if message is None or message == "":
             raise ValueError("Invalid message")
         return message
-
 
     @property
     def prompt(self) -> str:
@@ -36,8 +35,8 @@ class BaseAssistant(BaseModel):
         )
         return prompt.format_prompt()
 
-
     async def call_llm(self, token: str):
+        # TODO: recuperer le token ici
         headers = {
             "Authorization": f"Bearer {token}"
         }
@@ -46,7 +45,14 @@ class BaseAssistant(BaseModel):
             "options": self.options,
             "parameters": self.parameters,
         }
-        async with aiohttp.ClientSession() as session:
-            async with session.post(self.url, headers=headers, json=payload) as response:
-                result = await response.text()
-                return result
+        try:
+            async with aiohttp.ClientSession() as session:
+                async with session.post(
+                    self.url, headers=headers, json=payload
+                ) as response:
+                    result = await response.text()
+                    return result
+        except aiohttp.ClientError as e:
+            raise Exception(f"Erreur lors de la requête HTTP: {str(e)}")
+        except Exception as e:
+            raise Exception(f"Erreur inattendue: {str(e)}")

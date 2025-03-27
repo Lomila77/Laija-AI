@@ -1,6 +1,6 @@
 from pydantic import BaseModel, field_validator, Field
-from llm.utils.messages.user_messages import UserMessage
-import logging as logger
+from src.llm.utils.messages.user_messages import UserMessage
+
 
 class Prompt(BaseModel):
     system_prompt: str
@@ -31,7 +31,6 @@ class Prompt(BaseModel):
             raise ValueError("Need instructions")
         return instructions
 
-
     def format_prompt(self) -> str:
         prompt = self.system_prompt
         prompt += self.format_name()
@@ -51,10 +50,8 @@ class Prompt(BaseModel):
     def format_name(self) -> str:
         return f"Ton prénom est {self.name}.\n" if self.name else ""
 
-
     def format_message(self) -> str:
         return "### Question :\n" + self.message.format_message()
-
 
     def format_response(self) -> str:
         return "\nAssistant : "

@@ -1,15 +1,17 @@
 from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException
-from api.request_dto import APIRequestDTO, PersonalizeRequestDTO
+from src.api.request_dto import APIRequestDTO, PersonalizeRequestDTO
 import os
-from llm.personalize.PersonalizeAssistant import PersonalizeAssistant
-from llm.base.BaseAssistant import BaseAssistant
+from src.llm.personalize.PersonalizeAssistant import PersonalizeAssistant
+from src.llm.base.BaseAssistant import BaseAssistant
 
 path = os.path.join(os.path.dirname(__file__), ".env")
 load_dotenv()
 
 app = FastAPI()
 
+
+# TODO: rename HF_TOKEN to HF_API_KEY
 @app.post("/personalize")
 async def personalize(body: PersonalizeRequestDTO):
     assistant = PersonalizeAssistant(

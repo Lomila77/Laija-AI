@@ -1,6 +1,7 @@
 
 from pydantic import BaseModel, field_validator
 
+
 class UserMessage(BaseModel):
     message: str
 
@@ -13,6 +14,7 @@ class UserMessage(BaseModel):
 
     def format_message(self) -> str:
         return "Utilisateur : " + self.message
+
 
 class AssistantMessage(BaseModel):
     message: str
